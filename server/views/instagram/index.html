@@ -1,0 +1,51 @@
+{% extends '../layout.html' %}
+{% block content %}
+{% include '../nav-bar.html'%}
+<section ng-app="Instagram" ng-controller="InstagramController as instCtrl" layout="column" ng-cloak class="md-inline-form">
+    <md-toolbar class="md-theme-light">
+        <h2 class="md-toolbar-tools">
+            <span>Buscar por tags #</span>
+        </h2>
+    </md-toolbar>
+    <md-content layout-gt-sm="row" layout-padding>
+        <md-input-container>
+            <label>#</label>
+            <input ng-model="inst.tag">
+        </md-input-container>
+        <md-button class="md-fab md-primary md-hue-2" ng-click="estatisticas()" aria-label="Profile">
+            <i class="fa fa-search"></i>
+        </md-button>
+        <ul>
+            <li ng-repeat="tag in tags">
+                {{tag.name}}
+            </li>
+        </ul>
+    </md-content>
+        <!-- <h2>Populares no momento</h2>
+        {% for g in grams %}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href="{{ g.link }}" target="_blank">
+                    <img src="{{ g.images.low_resolution.url }}" class="img-responsive img-thumbnail">
+                </a>
+                <div class="caption">
+                    <h3>
+                        <a href="https://www.instagram.com/{{g.caption.from.username}}" target="_blank">
+                            {{ g.caption.from.full_name|default(g.caption.from.username) }}
+                        </a>
+                    </h3>
+                    <p class="text-right">
+                        <span class="glyphicon glyphicon-heart"></span>&nbsp;{{ g.likes.count }}&nbsp;
+                        <span class="glyphicon glyphicon-comment"></span>&nbsp;{{ g.comments.count }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    -->
+</section>
+{% endblock %}
+{% block footer %}
+{% parent %}
+<script src="/js/instagram.min.js"></script>
+{% endblock %}

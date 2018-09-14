@@ -1,0 +1,14 @@
+{
+    "sis_name": "System",
+    "sis_title": "Front page",
+    "txt_wellcome": "Wellcome",
+    "tit_access": "Access",
+    "txt_today": "Today",
+    "tit_user": "User",
+    "tit_password": "Password",
+    "help_field_user": "Inform the user name",
+    "help_field_password": "Type the password",
+    "txt_auth_error": "Incorrect credentials.",
+    "txt_auth_id_error": "Wrong user id.",
+    "txt_auth_access_error": "You have to be logged in to access the page."
+}

@@ -1,0 +1,17 @@
+{% include '../form-template/header.html'%}
+<div class="retorno hidden"></div>
+<form class="form-horizontal" autocomplete="off" novalidate>
+    <input type="hidden" name="todo[user_id]" id="userId" value="{{user.id}}" />
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="todo_title">{{locale.__('tit_title')}}</label>
+        <div class="col-md-10">
+            <input class="form-control" id="todo_title" name="todo[title]" type="text" value="" maxlength="250" required>
+            <p class="help-block">{{locale.__('txt_task_description')}}</p>
+        </div>
+    </div>
+    <div class="form-group pull-right">
+        <button type="button" data-dismiss="modal" id="btCancelar" class="btn btn-default bt-close">{{locale.__('tit_cancel')}}</button>
+        <a ng-href='' id="btSalvar" class="btn btn-primary">{{locale.__('tit_register')}}</a>
+    </div>
+</form>
+{% include '../form-template/footer.html'%}

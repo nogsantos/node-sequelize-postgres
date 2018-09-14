@@ -1,0 +1,7 @@
+node_modules
+client/*
+contributors.txt
+server/views/client/*
+Readme.md
+server/migrations/*
+server/bin/*

@@ -1,0 +1,115 @@
+#!/usr/bin/env node
+'use strict';
+/**
+* Module dependencies.
+*/
+var express = require('express');
+var app = require('../app');
+var debug = require('debug')('_example:server');
+var http = require('http');
+var load = require('consign');
+var debug = require('debug')('NOG');
+// var cluster = require('cluster');
+// var numCPUs = require('os').cpus().length;
+/**
+* Get port from environment and store in Express.
+*/
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+/**
+* Create HTTP server.
+*/
+var server = http.createServer(app);
+/**
+* Socket io
+*/
+var io = require('socket.io').listen(server);
+load()
+    .include('./server/sockets')
+    .into(io);
+/**
+ * Redis
+ */
+// var redis = require('../lib/redis_connect');
+// var ExpressStore = redis.getExpressStore();
+// var SocketStore = redis.getSocketStore();
+//
+// const _SECRET = 'Ntalk';
+// const _KEY = 'ntalk.sid';
+// var cookie = express.cookieParser(_SECRET);
+// var storeOpts = {client: redis.getClient(), prefix: _KEY};
+// var store = new ExpressStore(storeOpts);
+// var sessOpts = {secret: _SECRET, key: _KEY, store: store};
+// var session = express.session(sessOpts);
+// io.set('store', new SocketStore);
+/**
+* Listen on provided port, on all network interfaces.
+* Clusterizando o app de acordo com a quantidade de CPUs do servidor.
+*
+* @TODO Quando desenvolvemos no Node.js uma aplicação orientada a clusters,
+* 	aliado ao framework Express e Socket.IO,
+*  seus mecanismos default de persistência de Sessions param de funcionar corretamente.
+*  A natureza desse tipo de controle não consegue compartilhar dados entre os clusters,
+*  pois ele foi projetado para trabalhar com apenas um processo.
+*  O Express e Socket.IO são frameworks que utilizam por padrão sessão em memória.
+*  A solução para este problema é adotar um novo tipo de store para a sessão,
+*  sendo o Redis uma ótima alternativa.
+*/
+// if (cluster.isMaster) {
+//     for (var i = 0; i < numCPUs; i++) {
+//         cluster.fork();
+//     }
+//     cluster.on('exit', function(err){
+//         console.error(err);
+//     });
+// }else{
+//     server.listen(port);
+// }
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+/**
+* Normalize a port into a number, string, or false.
+*/
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+    return false;
+}
+/**
+* Event listener for HTTP server "error" event.
+*/
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+    var bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+function onListening() {
+    var addr = server.address();
+    var bind = (typeof addr === 'string') ? 'pipe ' + addr : 'port ' + addr.port;
+    console.log('Listening on ' + bind);
+}

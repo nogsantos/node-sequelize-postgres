@@ -1,0 +1,21 @@
+{% extends '../layout.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-xs-1 col-md-1">
+                <i class="fa fa-user-secret fa-5x"></i>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-8">
+                <p><strong>{{locale.__("tit_user")}}:</strong>&nbsp;{{user.first_name}}&nbsp;{{user.last_name}}</p>
+                <p><strong>{{locale.__("txt_your_level")}}:</strong>&nbsp;{{user.access_level}}</p>
+                <p><strong>{{locale.__("txt_required_level")}}:</strong>&nbsp;{{nivel}}</p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <button class="btn btn-large" onclick="history.back();"><i class="fa fa-history"></i>&nbsp;{{locale.__("tit_back")}}</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

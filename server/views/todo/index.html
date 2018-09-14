@@ -1,0 +1,42 @@
+{% extends '../layout.html' %}
+{% block content %}
+{% include '../nav-bar.html'%}
+<section ng-app="todo" ng-controller="TodoGridController" id="todoGridController">
+    <button type="button" class="btn btn-raised btn-danger" ng-click="excluir()"><i class="fa fa-trash"></i>&nbsp;Excluir</button>
+    <div ng-hide="alertaErro" class="panel panel-danger">
+        <div class="panel-heading">
+            <button type="button" class="close" ng-click="closePanell()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="fa fa-pencil-square-o"></i>&nbsp;{{locale.__('txt_action_error')}}
+        </div>
+        <div ng-bind-html="erros"></div>
+    </div>
+    <div ng-hide="alertaEdicao" class="panel panel-success">
+        <div class="panel-heading">
+            <button type="button" class="close" ng-click="closePanell()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="fa fa-pencil-square-o"></i>&nbsp;{{locale.__('txt_edit_success')}}
+        </div>
+        <div ng-bind-html="valoresEditados"></div>
+    </div>
+    <div ng-hide="alertaExclusao" class="panel panel-danger">
+        <div class="panel-heading">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;{{locale.__('txt_delete_confirm')}}
+        </div>
+        <div class="panel-body">
+            <div ng-bind-html="valoresExcluidos"></div>
+        </div>
+        <div class="panel-footer">
+            <button type="button" class="btn btn-info" ng-click="cancelarExclusao()">{{locale.__('tit_cancel')}}</button>
+            <button type="button" class="btn btn-danger" ng-click="confirmarExclusao()">{{locale.__('tit_confirm')}}</button>
+        </div>
+    </div>
+    <div ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav ui-grid-selection ui-grid-exporter ui-grid-validate class="grid"></div>
+    <div id="todo_menu" class="kc_fab_wrapper"></div>
+    <div id="ajax-modal" compile-data class="modal container fade" tabindex="-1" style="display: none;"></div>
+</section>
+{% endblock %}
+{% block footer %}
+{% parent %}
+<script src="/js/todo.min.js"></script>
+<script src="/lib/pdfmake/build/pdfmake.min.js"></script>
+<script src="/lib/pdfmake/build/vfs_fonts.js"></script>
+{% endblock %}

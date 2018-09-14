@@ -1,0 +1,62 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="author" content="Fabricio Nogueira">
+        <meta content="{{user.token}}" name="x-access-token" />
+        <title>{{sisname}} » {{title}}</title>
+        {% block head %}
+        <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/lib/fontawesome/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="/lib/angular/angular-csp.css" rel="stylesheet"/>
+        <link href="/lib/angular-material/angular-material.min.css" rel="stylesheet"/>
+        <link href="/lib/angular-material/angular-material.layouts.min.css" rel="stylesheet" />
+        <link href="/lib/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" rel="stylesheet"/>
+        <link href="/lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet"/>
+        <link href="/lib/angular-ui-grid/ui-grid.min.css" rel="stylesheet"/>
+        <link href="/css/libs.min.css" rel="stylesheet"/>
+        {% endblock %}
+    </head>
+    <body>{% endspaceless %}
+        <div class="container-fluid">
+            <div class="main">
+                <h1 class="page-header">{{title}}</h1>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-6 text-left">
+                        <label class="text-muted" id="info-time">
+                            {% if user.first_name != '' %}<i class="fa fa-user"></i>&nbsp;{{user.first_name}} {{user.last_name}}{% endif %}
+                        </label>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <label class="text-muted" id="info-time"><i class="fa fa-calendar"></i>&nbsp;{{footerMessage}}</label>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% block footer %}{% spaceless %}
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/lib/angular/angular.min.js"></script>
+        <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/lib/angular-animate/angular-animate.min.js"></script>
+        <script src="/lib/angular-aria/angular-aria.min.js"></script>
+        <script src="/lib/angular-material/angular-material.min.js"></script>
+        <script src="/lib/angular-messages/angular-messages.min.js"></script>
+        <script src="/lib/bootstrap-material-design/dist/js/material.min.js"></script>
+        <script src="/lib/bootstrap-material-design/dist/js/ripples.min.js"></script>
+        <script src="/lib/angular-ui-grid/ui-grid.min.js"></script>
+        <script src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="/js/app.min.js"></script>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        {% endspaceless %}{% endblock %}

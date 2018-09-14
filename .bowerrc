@@ -1,0 +1,6 @@
+{
+    "directory": "client/lib",
+    "analytics":false,
+    "proxy":"",
+    "https-proxy": ""
+}

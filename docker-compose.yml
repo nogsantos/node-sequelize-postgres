@@ -1,0 +1,17 @@
+version: "2.3"
+
+services:
+  postgresql:
+    image: nogsantos/postgres
+    container_name: app_database
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - DEBUG=false
+      - PG_TRUST_LOCALNET=true
+      - PG_PASSWORD=123456
+      - DB_NAME=todos
+    volumes:
+      - ./postgres/scripts:/scripts:rw
+      - ./postgres/data:/var/lib/postgresql:rw
