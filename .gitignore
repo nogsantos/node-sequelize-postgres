@@ -5,3 +5,4 @@ blog.md
 nbproject/
 client/lib/
 postgres/
+client/*

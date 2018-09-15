@@ -7,16 +7,16 @@
     "**/*.txt"
   ],
   "dependencies": {
-    "jquery": "~2.2.0",
-    "bootstrap": "~3.3.6",
-    "bootstrap-material-design": "^0.5.8",
-    "fontawesome": "~4.5.0",
-    "angular": "^1.5.0",
-    "angular-material": "^1.0.5",
-    "angular-ui-grid": "^3.1.1",
-    "bootstrap-modal": "^2.2.6",
-    "pdfmake": "^0.1.20",
-    "angular-sanitize": "^1.5.0"
+    "jquery": "3.3.1",
+    "bootstrap": "4.1.3",
+    "bootstrap-material-design": "4.1.1",
+    "fontawesome": "4.5.0",
+    "angular": "1.7.4",
+    "angular-material": "1.0.5",
+    "angular-ui-grid": "4.6.3",
+    "bootstrap-modal": "2.2.6",
+    "pdfmake": "0.1.38",
+    "angular-sanitize": "1.7.4"
   },
   "devDependencies": {}
 }
